@@ -1,0 +1,99 @@
+# Test Configuration (Smaller/Faster for Quick Testing)
+# Use this configuration for testing the suite before running full benchmarks
+
+platforms:
+  dgx_spark:
+    name: "NVIDIA DGX Spark (Grace-Blackwell)"
+    cost_per_hour: 8.00
+    gpu_type: "GB200"
+  
+  lambda_h100:
+    name: "Lambda GPU Cloud (H100)"
+    cost_per_hour: 2.49
+    gpu_type: "H100"
+
+# Inference Configuration (REDUCED FOR TESTING)
+inference:
+  text:
+    models:
+      # Smaller model for testing
+      - name: "meta-llama/Llama-3.1-8B-Instruct" #microsoft/phi-2
+        batch_sizes: [1, 4]
+        max_new_tokens: 256
+        num_samples: 10  # Reduced from 1000
+    
+    dataset: "openai/gsm8k"
+    dataset_split: "test"
+    use_vllm: false  # Disable for compatibility
+  
+  multimodal:
+    models:
+      # Smaller model for testing
+      - name: "Salesforce/blip2-flan-t5-xl"
+        batch_sizes: [1, 4]
+        max_new_tokens: 64
+    
+    dataset: "coco"
+    num_images: 10  #100 Reduced from 5000
+    image_size: [224, 224]  # Smaller for speed
+
+# Fine-tuning Configuration (REDUCED FOR TESTING)
+finetuning:
+  lora:
+    models:
+      - name: "microsoft/phi-2"
+        batch_size: 4
+        gradient_accumulation_steps: 2
+        num_epochs: 1
+        max_steps: 100  # Reduced from 1000
+        lora_r: 8
+        lora_alpha: 16
+        lora_dropout: 0.05
+    
+    dataset: "timdettmers/openassistant-guanaco"
+    dataset_split: "train"
+    max_seq_length: 256  # Reduced from 512
+    use_4bit: true
+  
+  full:
+    models:
+      - name: "facebook/opt-1.3b"
+        batch_size: 4
+        gradient_accumulation_steps: 2
+        num_epochs: 1
+        max_steps: 50  # Very reduced for testing
+    
+    dataset: "timdettmers/openassistant-guanaco"
+    dataset_split: "train"
+    max_seq_length: 256
+
+# Memory Tasks Configuration (REDUCED FOR TESTING)
+memory_tasks:
+  rapids:
+    num_rows: 10_000_000  # Reduced from 200M
+    num_cols: 10
+    join_size: 5_000_000  # Reduced from 50M
+    operations:
+      - join
+      - groupby
+    
+    matrix_size: [10000, 10000]  # Reduced from 20k x 20k
+    num_iterations: 5  # Reduced from 10
+
+# Logging Configuration
+logging:
+  log_dir: "./logs"
+  metrics_interval: 1.0
+  save_format: "csv"
+  verbose: true
+
+# GPU Monitoring Configuration
+monitoring:
+  sample_interval: 0.5
+  metrics:
+    - gpu_utilization
+    - memory_used
+    - memory_total
+    - temperature
+    - power_draw
+    - power_limit

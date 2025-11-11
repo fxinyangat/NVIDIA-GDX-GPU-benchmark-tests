@@ -1,0 +1,132 @@
+# Benchmark Configuration
+# Customize model names, datasets, batch sizes, and platform costs
+
+# Platform Configuration
+platforms:
+  dgx_spark:
+    name: "NVIDIA DGX Spark (Grace-Blackwell)"
+    cost_per_hour: 8.00  # USD per hour (adjust based on actual pricing)
+    gpu_type: "GB200"
+  
+  lambda_h100:
+    name: "Lambda GPU Cloud (H100)"
+    cost_per_hour: 2.49  # USD per hour (adjust based on actual pricing)
+    gpu_type: "H100"
+  
+  lambda_a100:
+    name: "Lambda GPU Cloud (A100)"
+    cost_per_hour: 1.29  # USD per hour (adjust based on actual pricing)
+    gpu_type: "A100"
+
+# Inference Configuration
+inference:
+  text:
+    models:
+      - name: "meta-llama/Llama-3.1-8B-Instruct"
+        batch_sizes: [1, 4, 8, 16]
+        max_new_tokens: 512
+        num_samples: 1000
+      
+      - name: "meta-llama/Llama-3.2-3B-Instruct"
+        batch_sizes: [1, 4, 8, 16]
+        max_new_tokens: 512
+        num_samples: 1000
+    
+    dataset: "openai/gsm8k"  # Math reasoning dataset
+    dataset_split: "test"
+    use_vllm: true  # Use vLLM for optimized inference
+  
+  multimodal:
+    models:
+      - name: "llava-hf/llava-v1.6-mistral-7b-hf"
+        batch_sizes: [1, 4, 8, 16]
+        max_new_tokens: 256
+      
+      - name: "Salesforce/blip2-flan-t5-xl"
+        batch_sizes: [1, 4, 8, 16]
+        max_new_tokens: 128
+    
+    dataset: "coco"  # COCO 2017 validation
+    num_images: 1000
+    image_size: [384, 384]
+
+# Fine-tuning Configuration
+finetuning:
+  lora:
+    models:
+      - name: "microsoft/phi-2"
+        batch_size: 8
+        gradient_accumulation_steps: 4
+        num_epochs: 3
+        max_steps: 1000
+        lora_r: 16
+        lora_alpha: 32
+        lora_dropout: 0.05
+      
+      - name: "facebook/opt-1.3b"
+        batch_size: 16
+        gradient_accumulation_steps: 2
+        num_epochs: 3
+        max_steps: 1000
+        lora_r: 16
+        lora_alpha: 32
+        lora_dropout: 0.05
+    
+    dataset: "timdettmers/openassistant-guanaco"
+    dataset_split: "train"
+    max_seq_length: 512
+    use_4bit: true  # QLoRA with 4-bit quantization
+  
+  full:
+    models:
+      - name: "facebook/opt-1.3b"
+        batch_size: 8
+        gradient_accumulation_steps: 4
+        num_epochs: 1
+        max_steps: 500
+      
+      - name: "microsoft/phi-2"
+        batch_size: 4
+        gradient_accumulation_steps: 8
+        num_epochs: 1
+        max_steps: 500
+    
+    dataset: "timdettmers/openassistant-guanaco"
+    dataset_split: "train"
+    max_seq_length: 512
+
+# Memory-Intensive Tasks Configuration
+memory_tasks:
+  rapids:
+    # Large-scale DataFrame operations
+    num_rows: 200_000_000  # 200M rows
+    num_cols: 20
+    join_size: 50_000_000  # 50M rows for join
+    operations:
+      - join
+      - groupby
+      - aggregate
+      - sort
+      - filter
+    
+    # Matrix operations
+    matrix_size: [20000, 20000]
+    num_iterations: 10
+
+# Logging Configuration
+logging:
+  log_dir: "./logs"
+  metrics_interval: 1.0  # seconds between GPU metric samples
+  save_format: "csv"
+  verbose: true
+
+# GPU Monitoring Configuration
+monitoring:
+  sample_interval: 0.5  # seconds
+  metrics:
+    - gpu_utilization
+    - memory_used
+    - memory_total
+    - temperature
+    - power_draw
+    - power_limit

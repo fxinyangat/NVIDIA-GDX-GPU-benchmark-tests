@@ -1,0 +1,4 @@
+model,platform,batch_size,num_samples,runtime_s,throughput,gpu_name,gpu_util_mean,gpu_util_max,memory_used_mb_peak,memory_percent_peak,memory_total_mb,temperature_c_mean,temperature_c_max,power_draw_w_mean,power_draw_w_max,energy_consumed_wh,timestamp,operation,output_rows,tflops,matrix_size
+cuDF_join,dgx_spark,1,15000000,0.09126424789428711,164357898.58669245,NVIDIA GB10,1.0,1,0,0,0,41.0,41,0.0,0,0.0,2025-11-07T17:53:56.127092,join,5000000.0,,
+cuDF_groupby,dgx_spark,1,10000000,0.09802579879760742,102013960.84154202,NVIDIA GB10,2.0,2,0,0,0,41.0,41,0.0,0,0.0,2025-11-07T17:53:57.074572,groupby_aggregate,10000.0,,
+cuPy_matrix,dgx_spark,1,5,2.560443878173828,1.952786406537496,NVIDIA GB10,29.333333333333332,84,0,0,0,42.0,44,0.0,0,0.0,2025-11-07T17:54:00.225745,matrix_ops,,3.905572813074992,"[10000, 10000]"

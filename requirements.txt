@@ -1,0 +1,47 @@
+# Core ML/DL frameworks
+# torch>=2.1.0
+# torchvision>=0.16.0
+
+# # transformers>=4.36.0
+accelerate>=0.25.0
+datasets>=2.16.0
+
+# # Efficient training and inference
+peft>=0.7.0
+bitsandbytes>=0.41.0
+vllm>=0.2.6
+# flash-attn>=2.5.0
+
+# # Computer Vision
+pillow>=10.0.0
+opencv-python>=4.8.0
+
+# # RAPIDS (install separately with CUDA version matching)
+cudf-cu12
+cupy-cuda12x
+
+# # Monitoring and metrics
+nvidia-ml-py3>=7.352.0
+psutil>=5.9.0
+gpustat>=1.1.1
+
+# # Data and visualization
+pandas>=2.0.0
+numpy>=1.24.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# # Configuration
+pyyaml>=6.0
+python-dotenv>=1.0.0
+
+# # Jupyter for analysis
+jupyter>=1.0.0
+ipywidgets>=8.0.0
+
+# # Utilities
+tqdm>=4.65.0
+requests>=2.31.0
+
+# # Hugging Face Hub
+huggingface-hub>=0.19.0

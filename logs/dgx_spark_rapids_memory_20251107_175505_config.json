@@ -1,0 +1,17 @@
+{
+  "num_rows": 200000000,
+  "join_size": 50000000,
+  "operations": [
+    "join",
+    "groupby",
+    "aggregate",
+    "sort",
+    "filter"
+  ],
+  "matrix_size": [
+    20000,
+    20000
+  ],
+  "num_iterations": 10,
+  "platform": "dgx_spark"
+}

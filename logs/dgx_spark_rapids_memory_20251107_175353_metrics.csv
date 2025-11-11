@@ -1,0 +1,7 @@
+timestamp,gpu_utilization,memory_utilization,memory_used_mb,memory_total_mb,memory_percent,temperature_c,power_draw_w,power_limit_w,sm_clock_mhz,mem_clock_mhz
+1762563237.1542628,4,0,0,0,0,41,0,0,0,0
+1762563237.706884,4,0,0,0,0,41,0,0,0,0
+1762563238.2074432,0,0,0,0,0,42,0,0,0,0
+1762563238.7080653,0,0,0,0,0,41,0,0,0,0
+1762563239.2128243,84,0,0,0,0,43,0,0,0,0
+1762563239.7136679,84,0,0,0,0,44,0,0,0,0

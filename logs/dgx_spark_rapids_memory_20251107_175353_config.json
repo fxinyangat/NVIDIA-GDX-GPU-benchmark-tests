@@ -1,0 +1,14 @@
+{
+  "num_rows": 10000000,
+  "join_size": 5000000,
+  "operations": [
+    "join",
+    "groupby"
+  ],
+  "matrix_size": [
+    10000,
+    10000
+  ],
+  "num_iterations": 5,
+  "platform": "dgx_spark"
+}
