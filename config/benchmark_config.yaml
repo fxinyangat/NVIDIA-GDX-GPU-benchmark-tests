@@ -24,6 +24,7 @@ inference:
     models:
       - name: "meta-llama/Llama-3.1-8B-Instruct"
         batch_sizes: [1, 4, 8, 16]
+        max_model_len: 4096 # added
         max_new_tokens: 512
         num_samples: 1000
       

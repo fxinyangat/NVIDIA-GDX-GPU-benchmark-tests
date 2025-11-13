@@ -163,8 +163,8 @@ def run_multimodal_test(platform: str = "dgx_spark", num_images: int = 5000):
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("--platform", default="dgx_spark")
-    parser.add_argument("--num-images", type=int, default=50)
+    parser.add_argument("--platform", default="H100")
+    parser.add_argument("--num-images", type=int, default=5000)
     args = parser.parse_args()
     
     run_multimodal_test(args.platform, args.num_images)

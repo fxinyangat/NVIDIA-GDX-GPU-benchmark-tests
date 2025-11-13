@@ -17,8 +17,8 @@ pillow>=10.0.0
 opencv-python>=4.8.0
 
 # # RAPIDS (install separately with CUDA version matching)
-cudf-cu12
-cupy-cuda12x
+# cudf-cu12
+# cupy-cuda12x
 
 # # Monitoring and metrics
 nvidia-ml-py3>=7.352.0

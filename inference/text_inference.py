@@ -19,6 +19,10 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from utils import GPUMonitor, BenchmarkLogger, create_result_dict, print_result_table
 
 
+torch.cuda.empty_cache()
+
+
+
 def load_config(config_path: str = "config/benchmark_config.yaml") -> Dict:
     """Load benchmark configuration"""
     with open(config_path, 'r') as f:
@@ -121,7 +125,7 @@ def run_inference_vllm(
     llm = LLM(
         model=model_name,
         tensor_parallel_size=1,  # Set based on GPU count
-        gpu_memory_utilization=0.60,
+        gpu_memory_utilization=0.8,
         trust_remote_code=True
     )
     
