@@ -1,2 +1,0 @@
-model,platform,batch_size,num_samples,runtime_s,throughput,gpu_name,gpu_util_mean,gpu_util_max,memory_used_mb_peak,memory_percent_peak,memory_total_mb,temperature_c_mean,temperature_c_max,power_draw_w_mean,power_draw_w_max,energy_consumed_wh,timestamp,tokens_per_second,total_tokens,max_new_tokens,inference_engine
-meta-llama/Llama-3.2-3B-Instruct,dgx_spark,4,1000,4521.875314474106,0.22114718572603986,NVIDIA GB10,82.64071325728209,88,0,0,0,67.40824011518441,77,0.0,0,0.0,2025-11-06T19:17:00.852646,63.84607710785061,288704,512,vllm

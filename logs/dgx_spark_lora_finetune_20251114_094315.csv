@@ -1,0 +1,2 @@
+model,platform,batch_size,num_samples,runtime_s,throughput,gpu_name,gpu_util_mean,gpu_util_max,memory_used_mb_peak,memory_percent_peak,memory_total_mb,temperature_c_mean,temperature_c_max,power_draw_w_mean,power_draw_w_max,energy_consumed_wh,timestamp,training_loss,num_steps,lora_r,lora_alpha,use_4bit,method
+microsoft/phi-2,dgx_spark,32,9846,17994.394140720367,1.6415112267190513,NVIDIA GB10,95.33530917793733,96,0,0,0,75.63140758056437,82,0.0,0,0.0,2025-11-14T14:43:20.713459,1.558290802001953,1000,16,32,True,QLoRA

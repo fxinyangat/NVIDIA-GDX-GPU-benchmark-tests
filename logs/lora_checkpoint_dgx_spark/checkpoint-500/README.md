@@ -1,9 +1,9 @@
 ---
-base_model: microsoft/phi-2
+base_model: facebook/opt-1.3b
 library_name: peft
 pipeline_tag: text-generation
 tags:
-- base_model:adapter:microsoft/phi-2
+- base_model:adapter:facebook/opt-1.3b
 - lora
 - transformers
 ---
