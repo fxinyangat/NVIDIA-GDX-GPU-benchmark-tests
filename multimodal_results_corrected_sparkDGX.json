@@ -1,0 +1,29 @@
+{
+  "batch_size_1": {
+    "batch_size": 1,
+    "num_images": 1000,
+    "total_time": 1377.9668052196503,
+    "image_throughput": 0.7257068865607386,
+    "token_throughput": 42.26589478018397,
+    "total_tokens": 58241,
+    "peak_memory_gb": 7.789003849029541
+  },
+  "batch_size_2": {
+    "batch_size": 2,
+    "num_images": 1000,
+    "total_time": 702.1610164642334,
+    "image_throughput": 1.4241747641239748,
+    "token_throughput": 91.2668155841208,
+    "total_tokens": 64084,
+    "peak_memory_gb": 7.789003849029541
+  },
+  "batch_size_4": {
+    "batch_size": 4,
+    "num_images": 1000,
+    "total_time": 365.54054617881775,
+    "image_throughput": 2.7356746343285616,
+    "token_throughput": 177.81885123135652,
+    "total_tokens": 65000,
+    "peak_memory_gb": 7.789003849029541
+  }
+}
