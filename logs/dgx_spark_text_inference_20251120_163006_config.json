@@ -1,0 +1,11 @@
+{
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "max_new_tokens": 512,
+  "num_samples": 1000,
+  "platform": "dgx_spark",
+  "gpu_name": "NVIDIA GB10",
+  "total_vram_gb": 119.69921493530273,
+  "memory_bandwidth_gbs": 273,
+  "method": "sequential_transformers",
+  "precision": "fp16"
+}
