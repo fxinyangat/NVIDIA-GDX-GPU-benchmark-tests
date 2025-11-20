@@ -192,9 +192,9 @@ def verify_cuda_setup():
     if not torch.cuda.is_available():
         raise RuntimeError("CUDA not available! Will run on CPU.")
     
-    print(f"✓ CUDA Available: {torch.cuda.is_available()}")
-    print(f"✓ Device: {torch.cuda.get_device_name(0)}")
-    print(f"✓ Initial Memory: {torch.cuda.memory_allocated()/1024**3:.2f} GB")
+    print(f"CUDA Available: {torch.cuda.is_available()}")
+    print(f"Device: {torch.cuda.get_device_name(0)}")
+    print(f"Initial Memory: {torch.cuda.memory_allocated()/1024**3:.2f} GB")
     
     torch.cuda.reset_peak_memory_stats()
     torch.cuda.empty_cache()
@@ -213,18 +213,18 @@ def load_model_with_verification(model_name):
     
     # EXPLICIT DEVICE VERIFICATION
     model_device = next(model.parameters()).device
-    print(f"✓ Model device: {model_device}")
+    print(f"Model device: {model_device}")
     
     if model_device.type != 'cuda':
         raise RuntimeError(f"ERROR: Model on {model_device}, not CUDA!")
     
     # Check GPU memory
     memory_gb = torch.cuda.memory_allocated() / 1024**3
-    print(f"✓ Model Memory: {memory_gb:.2f} GB")
+    print(f"Model Memory: {memory_gb:.2f} GB")
     
     # Count parameters
     params = sum(p.numel() for p in model.parameters())
-    print(f"✓ Parameters: {params/1e9:.2f}B")
+    print(f"Parameters: {params/1e9:.2f}B")
     print()
     
     return processor, model
@@ -250,7 +250,7 @@ def run_multimodal_benchmark(model, processor, batch_size=4, num_images=1000):
     # Generate images
     print("Generating synthetic images...")
     images = generate_synthetic_images(num_images)
-    print(f"✓ Generated {len(images)} images\n")
+    print(f"Generated {len(images)} images\n")
     
     # Warmup
     print("Warmup...")
@@ -258,7 +258,7 @@ def run_multimodal_benchmark(model, processor, batch_size=4, num_images=1000):
     with torch.no_grad():
         _ = model.generate(**inputs, max_new_tokens=10)
     torch.cuda.synchronize()
-    print("✓ Complete\n")
+    print("Complete\n")
     
     # Record GPU utilization at start
     start_memory = torch.cuda.memory_allocated() / 1024**3
@@ -356,7 +356,7 @@ def main():
     with open('multimodal_results_corrected.json', 'w') as f:
         json.dump(all_results, f, indent=2)
     
-    print("\n✓ Results saved to: multimodal_results_corrected.json")
+    print("\nResults saved to: multimodal_results_corrected.json")
 
 if __name__ == "__main__":
     main()
